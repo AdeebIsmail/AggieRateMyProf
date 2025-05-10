@@ -18,6 +18,7 @@ if (window.location.pathname.match(/^\/terms\/.*\/courses\/\d+$/)) {
   }
 
   function createTeacherCard(teacher) {
+    let url = "https://www.ratemyprofessors.com/professor/" + teacher.legacyId;
     const card = document.createElement("div");
     card.style.border = "1px solid #ccc";
     card.style.borderRadius = "8px";
@@ -25,7 +26,9 @@ if (window.location.pathname.match(/^\/terms\/.*\/courses\/\d+$/)) {
     card.style.backgroundColor = "#fff";
     card.style.boxShadow = "0 2px 6px rgba(0,0,0,0.1)";
     card.innerHTML = `
-    <strong>${teacher.firstName} ${teacher.lastName}</strong><br>
+     <strong><a href=${url} +  target="_blank">${
+       teacher.firstName
+     } ${teacher.lastName}</a> </strong><br>
     Department: ${teacher.department}<br>
     Avg Rating: ${teacher.avgRating}<br>
     Would Take Again: ${teacher.wouldTakeAgainPercent.toFixed(1)}%<br>

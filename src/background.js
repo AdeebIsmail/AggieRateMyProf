@@ -15,6 +15,7 @@ async function fetchTeacherList(teacherList, departmentCode) {
               avgDifficulty
               avgRating
               department
+              legacyId
               numRatings
               wouldTakeAgainPercent
               courseCodes {
