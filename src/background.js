@@ -27,11 +27,11 @@ async function fetchTeacherList(teacherList, departmentCode) {
       }
     }
   `;
-
+  teacherList = [...new Set(teacherList)];
   let data = [];
   for (let i = 0; i < teacherList.length; i++) {
     let teacher = teacherList[i];
-
+    console.log("Fetching data for teacher:", teacher);
     const variables = {
       text: teacher,
     };
@@ -49,15 +49,16 @@ async function fetchTeacherList(teacherList, departmentCode) {
       });
 
       const result = await response.json();
-
+      console.log("GraphQL Response:", result);
       let proxyResponse = result["data"]["newSearch"]["teachers"]["edges"];
 
       for (let i = 0; i < proxyResponse.length; i++) {
+        console.log(proxyResponse[i]["node"]);
         courses = proxyResponse[i]["node"]["courseCodes"];
         for (let j = 0; j < courses.length; j++) {
-          if (courses[j]["courseName"].startsWith(departmentCode)) {
+          if (courses[j]["courseName"].startsWith(departmentCode) || courses[j]["courseName"].startsWith(departmentCode.toUpperCase()) || courses[j]["courseName"].startsWith(departmentCode.toLowerCase())) {
             data.push(proxyResponse[i]);
-            break;
+            break
           }
         }
       }

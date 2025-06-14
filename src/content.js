@@ -1,5 +1,4 @@
 if (window.location.pathname.match(/^\/terms\/.*\/courses\/\d+$/)) {
-  // 1. Create container (if not already created)
   let container = document.getElementById("teacher-info-container");
   if (!container) {
     container = document.createElement("div");
@@ -12,7 +11,6 @@ if (window.location.pathname.match(/^\/terms\/.*\/courses\/\d+$/)) {
     container.style.flexDirection = "column";
     container.style.gap = "10px"; 
     container.style.height = document.documentElement.scrollHeight + -200 + "px"; // or any value you prefer
-    console.log(document.documentElement.scrollHeight);
     container.style.overflowY = "auto"; 
     document.body.appendChild(container);
   }
@@ -66,6 +64,7 @@ if (window.location.pathname.match(/^\/terms\/.*\/courses\/\d+$/)) {
         });
 
         if (array.length > 0) {
+          console.log("Instructors found:", array);
           chrome.runtime.sendMessage({
             type: "teacherList",
             data: array,
@@ -83,3 +82,4 @@ if (window.location.pathname.match(/^\/terms\/.*\/courses\/\d+$/)) {
   const existingBox = document.getElementById("teacher-info-container");
   if (existingBox) existingBox.remove();
 }
+
