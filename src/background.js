@@ -49,7 +49,6 @@ async function fetchTeacherList(teacherList, departmentCode) {
       });
 
       const result = await response.json();
-      console.log("GraphQL Response:", result);
       let proxyResponse = result["data"]["newSearch"]["teachers"]["edges"];
 
       for (let i = 0; i < proxyResponse.length; i++) {

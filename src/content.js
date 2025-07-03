@@ -14,6 +14,22 @@ if (window.location.pathname.match(/^\/terms\/.*\/courses\/\d+$/)) {
     container.style.overflowY = "auto"; 
     document.body.appendChild(container);
   }
+  else{
+    container.remove();
+    container = document.createElement("div");
+    container.id = "teacher-info-container";
+    container.style.position = "fixed";
+    container.style.top = "100px";
+    container.style.right = "20px";
+    container.style.zIndex = "9999";
+    container.style.display = "flex";
+    container.style.flexDirection = "column";
+    container.style.gap = "10px";
+    container.style.height =
+    document.documentElement.scrollHeight + -200 + "px"; 
+    container.style.overflowY = "auto";
+    document.body.appendChild(container);
+  }
 
   function createTeacherCard(teacher) {
     let url = "https://www.ratemyprofessors.com/professor/" + teacher.legacyId;
